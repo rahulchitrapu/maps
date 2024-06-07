@@ -8,6 +8,9 @@ const LazyMap2 = lazy(() => import("./maps/Map2"));
 
 const LazyDummy = lazy(() => import("./Dummy"));
 
+const LazyLandingPage = lazy(() => import("./landingpage2/Landingpage1"));
+
+
 function App() {
   return (
     <div className="App">
@@ -43,6 +46,14 @@ function App() {
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <h1>helloo</h1>
+            </Suspense>
+          }
+        ></Route>
+        <Route
+          path="/lead"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyLandingPage />
             </Suspense>
           }
         ></Route>
