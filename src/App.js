@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from "react";
+import "./App.css";
+
+import { Route, Routes } from "react-router-dom";
+
+const LazyMap1 = lazy(() => import("./maps/Map1"));
+const LazyMap2 = lazy(() => import("./maps/Map2"));
+
+const LazyDummy = lazy(() => import("./Dummy"));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyMap1 />
+            </Suspense>
+          }
+        ></Route>
+        <Route
+          path="/map"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyMap2 />
+            </Suspense>
+          }
+        ></Route>
+
+        <Route
+          path="/dummy"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyDummy />
+            </Suspense>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }
