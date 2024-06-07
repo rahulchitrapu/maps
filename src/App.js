@@ -37,6 +37,15 @@ function App() {
             </Suspense>
           }
         ></Route>
+
+        <Route
+          path="/dummy1"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <h1>helloo</h1>
+            </Suspense>
+          }
+        ></Route>
       </Routes>
     </div>
   );
